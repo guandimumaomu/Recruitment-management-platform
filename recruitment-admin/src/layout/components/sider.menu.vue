@@ -3,14 +3,14 @@
         <a-menu  theme="dark" mode="inline">
             <template v-for="item in routes">
                 <a-menu-item v-if="!item.children"  :key="item.path">
-                    <pie-chart-outlined />
+                    <component :is="item.meta.icon" />
                     <span>{{ item.meta.label }}</span>
                  </a-menu-item>
         
                 <a-sub-menu v-else :key="item.path + '0'">
                     <template #title>
                         <span>
-                            <user-outlined />
+                            <component :is="item.meta.icon" />
                             <span>{{ item.meta.label }}</span>
                         </span>
                     </template>

@@ -5,7 +5,7 @@ export const routes = [
         component: () => import('@/views/dashboard.vue') ,//懒加载
         meta: {
             label: '数据可视化',
-            icon: 'AreaChartOutlined'
+            icon: 'DashboardTwoTone'
         }
     },
 
@@ -14,7 +14,7 @@ export const routes = [
         component: () => import('@/views/category/index.vue'),
         meta: {
             label: "分类管理",
-            icon: 'AreaChartOutlined' 
+            icon: 'AppstoreTwoTone' 
         },
         children: [
             {

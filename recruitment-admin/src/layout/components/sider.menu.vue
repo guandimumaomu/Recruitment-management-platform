@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-menu  theme="dark" mode="inline">
+        <a-menu  theme="dark" mode="inline" @click="handleMenu">
             <template v-for="item in routes">
                 <a-menu-item v-if="!item.children"  :key="item.path">
                     <component :is="item.meta.icon" />
@@ -26,6 +26,15 @@
 
 <script setup lang="ts">
 import { routes } from '@/router'
+import {useRouter} from 'vue-router'
+const router = useRouter()
+/*useRouter(): Router
+返回路由器实例。相当于在模板中使用 $router。
+返回值:Router
+*/
+const handleMenu = ({key}:{key:string}) => {
+    router.push(key)    
+}
 
 </script>
 

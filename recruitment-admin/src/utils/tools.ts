@@ -15,6 +15,6 @@ export function routeMapTool() {
             }
         })
     }
-    loop(routes)
+    loop(routes[0].children!)
     return routeMap
 }

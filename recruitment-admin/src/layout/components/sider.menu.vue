@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-menu  theme="dark" mode="inline" @click="handleMenu">
-            <template v-for="item in routes">
+            <template v-for="item in routes[0].children">
                 <a-menu-item v-if="!item.children"  :key="item.path">
                     <component :is="item.meta.icon" />
                     <span>{{ item.meta.label }}</span>

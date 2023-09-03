@@ -1,41 +1,55 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 export const routes = [
-    {
-        path: '/',
-        component: () => import('@/views/dashboard.vue') ,//懒加载
-        meta: {
-            label: '数据可视化',
-            icon: 'DashboardTwoTone'
-        }
-    },
+
 
     {
-        path: '/category',
-        component: () => import('@/views/category/index.vue'),
-        meta: {
-            label: "分类管理",
-            icon: 'AppstoreTwoTone' 
-        },
+        path: '/',
+        component: () => import('@/layout/index.vue') ,//懒加载
         children: [
             {
-                path: '/category/list',
-                component: () => import('@/views/category/list.vue'), //懒加载
+                path: '/',
+                component: () => import('@/views/dashboard.vue') ,//懒加载
                 meta: {
-                    label: "分类列表",
-                },
+                    label: '数据可视化',
+                    icon: 'DashboardTwoTone'
+                }
             },
         
             {
-                path: '/category/pub',
-                component:() => import('@/views/category/pub.vue') ,//懒加载
+                path: '/category',
+                component: () => import('@/views/category/index.vue'),
                 meta: {
-                    label: "发布分类",
+                    label: "分类管理",
+                    icon: 'AppstoreTwoTone' 
                 },
-            },
+                children: [
+                    {
+                        path: '/category/list',
+                        component: () => import('@/views/category/list.vue'), //懒加载
+                        meta: {
+                            label: "分类列表",
+                        },
+                    },
+                
+                    {
+                        path: '/category/pub',
+                        component:() => import('@/views/category/pub.vue') ,//懒加载
+                        meta: {
+                            label: "发布分类",
+                        },
+                    },
+                ]
+            }
+        
         ]
-    }
+    },
 
-   
+    
+    {
+        path: '/login',
+        component: () => import('@/views/login.vue') ,//懒加载
+    },
+  
 ]
 
 const router = createRouter({

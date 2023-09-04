@@ -5,4 +5,5 @@ export interface CategoryType{
     name: string
     parentId:string
     icon: string //icon图标链接
+    children?:CategoryType[]
 }

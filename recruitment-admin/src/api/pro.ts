@@ -15,3 +15,14 @@ export const testPost = () => {
 export const categoryPost = (category: CategoryType) => {
     return request.post("classes/category", category)
 }
+
+//分类请求(两种)
+export const categoryGet = (all?:boolean) => {  //设置一个可选的布尔字段
+    let where = all ? {} : { parentId: "0-0" };
+    //all为true，用户想加载所有的数据，就将all设为空对象，即为不携带条件
+    return request.get('classes/category', {
+        params: {
+            where,
+        }
+    })
+}

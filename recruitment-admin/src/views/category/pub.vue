@@ -6,6 +6,13 @@
       <a-form-item label="父级类目" v-bind="validateInfos.parentId">
         <a-select v-model:value="modelRef.parentId" placeholder="请选择父级类目">
           <a-select-option value="0-0">顶级类目</a-select-option>
+          <a-select-option 
+            v-for="item in parentList" 
+            :key="item.objectId" 
+            :value="item.objectId"
+            >
+                {{ item.name }}
+        </a-select-option>
         </a-select>
       </a-form-item>
       <a-form-item label="分类图标" v-bind="validateInfos.icon">
@@ -22,6 +29,8 @@
   import { Form } from 'ant-design-vue';
 import { categoryPost } from '@/api/pro';
 import { CategoryType } from '@/types/pro';
+import {categoryGet} from '@/api/pro'
+import { ref } from 'vue';
   
   const useForm = Form.useForm;
   
@@ -65,6 +74,17 @@ import { CategoryType } from '@/types/pro';
         console.log('error', err);
       });
   };
+
+  //初始化类目列表
+  const parentList = ref<Array<CategoryType>>([])
+    
+  categoryGet().then((res) => {
+        //通过get请求加载的数据包是在result中
+        //可以log一下res观察下数据包结构
+        console.log(res);
+        
+        parentList.value = res.data.results
+    })
   </script>
   
   

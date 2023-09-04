@@ -1,7 +1,7 @@
 <template>
     <a-layout style="min-height: 100vh">
       <a-layout-sider v-model:collapsed="collapsed" collapsible>
-        <div class="logo" />
+        <div class="logo" >招聘管理平台</div>
         <SiderMenu/>
       </a-layout-sider>
       <a-layout>
@@ -13,7 +13,7 @@
           </div>
         </a-layout-content>
         <a-layout-footer style="text-align: center">
-          Ant Design ©2018 Created by Ant UED
+          Recruitment-admin ©2023 Created by cmx
         </a-layout-footer>
       </a-layout>
     </a-layout>
@@ -30,6 +30,12 @@
     height: 32px;
     margin: 16px;
     background: rgba(255, 255, 255, 0.3);
+
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
   }
   
   .site-layout .site-layout-background {

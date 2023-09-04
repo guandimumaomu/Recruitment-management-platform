@@ -18,18 +18,20 @@
     </a-form>
   </template>
   <script lang="ts" setup>
-  import { reactive, toRaw } from 'vue';
+  import { reactive} from 'vue';
   import { Form } from 'ant-design-vue';
+import { categoryPost } from '@/api/pro';
+import { CategoryType } from '@/types/pro';
   
   const useForm = Form.useForm;
   
   const labelCol = { span: 4 };
   const wrapperCol = { span: 18 };
   //调整间隙
-  const modelRef = reactive({
+  const modelRef:CategoryType = reactive({
     name: '',
-    parentId: undefined,
-    icon: '',
+    parentId: '',
+    icon: 'img.png',
   });
   const rulesRef = reactive({
     name: [
@@ -57,7 +59,7 @@
   const onSubmit = () => {
     validate()
       .then(() => {
-        console.log(toRaw(modelRef));
+        categoryPost(modelRef)
       })
       .catch(err => {
         console.log('error', err);

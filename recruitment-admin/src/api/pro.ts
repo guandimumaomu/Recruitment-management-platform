@@ -1,3 +1,4 @@
+import { CategoryType } from '@/types/pro'
 import request from '@/utils/request'
 
 //做具体业务相关的请求
@@ -8,4 +9,9 @@ export const testPost = () => {
         name: '翠山',
         score:80,
     })
+}
+
+//实现分类发布接口
+export const categoryPost = (category: CategoryType) => {
+    return request.post("classes/category", category)
 }

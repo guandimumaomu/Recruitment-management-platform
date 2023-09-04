@@ -7,6 +7,8 @@ import * as antIcons from "@ant-design/icons-vue";
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 
+import ImgUpload from './components/img-upload.vue'
+
 const app = createApp(App);
 
 // 注册组件
@@ -15,7 +17,8 @@ Object.keys(antIcons).forEach((key: any) => {
 });
 // 添加到全局
 app.config.globalProperties.$antIcons = antIcons;
-
+//图片上传组件全局注册到app下面
+app.component('img-upload', ImgUpload)
 app.use(router)
 app.use(Antd)
 

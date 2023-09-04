@@ -16,7 +16,8 @@
         </a-select>
       </a-form-item>
       <a-form-item label="分类图标" v-bind="validateInfos.icon">
-        <a-input v-model:value="modelRef.icon" /> 
+        <!-- 全局引入图片上传组件，在main.ts里面 -->
+        <img-upload />
       </a-form-item>
       <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
         <a-button type="primary" @click.prevent="onSubmit">Create</a-button>

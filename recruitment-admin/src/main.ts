@@ -9,6 +9,8 @@ import 'ant-design-vue/dist/reset.css';
 
 import ImgUpload from './components/img-upload.vue'
 
+import './utils/init-leancloud'  //初始化leancloudSDK
+
 const app = createApp(App);
 
 // 注册组件

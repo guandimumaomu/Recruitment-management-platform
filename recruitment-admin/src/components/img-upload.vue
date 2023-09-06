@@ -11,7 +11,7 @@
       :before-upload="beforeUpload"
       :customRequest = "handleUpload"
     >
-      <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
+      <img v-if="imageUrl" :src="imageUrl" class="avatar" alt="avatar" />
       <div v-else>
         <loading-outlined v-if="loading"></loading-outlined>
         <plus-outlined v-else></plus-outlined>
@@ -25,6 +25,8 @@
   import { message } from 'ant-design-vue';
 //   import type { UploadChangeParam } from 'ant-design-vue';
 import { FileType } from 'ant-design-vue/es/upload/interface';
+
+import Cloud from 'leancloud-storage'
   
   function getBase64(img: FileType, callback: (base64Url: string) => void) {
     const reader = new FileReader();
@@ -39,11 +41,13 @@ import { FileType } from 'ant-design-vue/es/upload/interface';
 
   const handleUpload = (info: any) => {
     // console.log(info);
-        getBase64(info.file, (base64) => {
-        console.log(base64);
-        
-    })
-    
+      getBase64(info.file, async (base64) => {
+        // console.log(base64);
+        const file = new Cloud.File('recruit.png', { base64 })
+        let res:any = await file.save()
+        console.log(res);
+        imageUrl.value = res.attributes.url
+      }) 
   }
 //   const handleChange = (info: UploadChangeParam) => {
 //     if (info.file.status === 'uploading') {
@@ -91,6 +95,11 @@ import { FileType } from 'ant-design-vue/es/upload/interface';
   .ant-upload-select-picture-card .ant-upload-text {
     margin-top: 8px;
     color: #666;
+  }
+
+  .avatar{
+    width: 100%;
+    height: 100%;
   }
   </style>
   

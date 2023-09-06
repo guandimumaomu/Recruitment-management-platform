@@ -11,7 +11,11 @@
       :before-upload="beforeUpload"
       :customRequest = "handleUpload"
     >
-      <img v-if="imageUrl" :src="imageUrl" class="avatar" alt="avatar" />
+    <!-- 支持两种情况，一种新上传的图片。一种是默认图片 -->
+      <img v-if="imageUrl||modelValue" 
+      :src="imageUrl||modelValue" 
+      class="avatar" 
+      alt="avatar" />
       <div v-else>
         <loading-outlined v-if="loading"></loading-outlined>
         <plus-outlined v-else></plus-outlined>
@@ -27,6 +31,11 @@
 import { FileType } from 'ant-design-vue/es/upload/interface';
 
 import Cloud from 'leancloud-storage'
+
+interface PropsType{
+  modelValue:string
+}
+defineProps<PropsType>()
   
   function getBase64(img: FileType, callback: (base64Url: string) => void) {
     const reader = new FileReader();

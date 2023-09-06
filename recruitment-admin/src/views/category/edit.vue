@@ -28,21 +28,26 @@
   <script lang="ts" setup>
   import { reactive} from 'vue';
   import { Form } from 'ant-design-vue';
-import { categoryPost } from '@/api/pro';
+import { categoryPut } from '@/api/pro';
 import { CategoryType } from '@/types/pro';
 import {categoryGet} from '@/api/pro'
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
   
   const useForm = Form.useForm;
+  const route = useRoute();
   
   const labelCol = { span: 4 };
   const wrapperCol = { span: 18 };
   //调整间隙
-  const modelRef:CategoryType = reactive({
-    name: '',
-    parentId: '',
-    icon: '',
+
+
+  const modelRef  = ref<CategoryType>({
+    name: "",
+    parentId: "",
+    icon: "",
   });
+
   const rulesRef = reactive({
     name: [
       {
@@ -70,8 +75,7 @@ import { ref } from 'vue';
     validate()
       .then(() => {
         // console.log(modelRef);
-        
-        categoryPost(modelRef)
+        categoryPut(route.query.objectId as string, modelRef.value)
       })
       .catch(err => {
         console.log('error', err);
@@ -84,10 +88,15 @@ import { ref } from 'vue';
   categoryGet().then((res) => {
         //通过get请求加载的数据包是在result中
         //可以log一下res观察下数据包结构
-        console.log(res);
+        // console.log(res);
         
         parentList.value = res.data.results
     })
+
+    //编辑内容
+ 
+  const initData = route.query as unknown as CategoryType;
+  modelRef.value = initData;
   </script>
   
   

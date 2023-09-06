@@ -26,3 +26,8 @@ export const categoryGet = (all?:boolean) => {  //设置一个可选的布尔字
         }
     })
 }
+
+//实现更新接口
+export const categoryPut = (objectId:string, category: CategoryType) => {
+    return request.put(`classes/category/${objectId}`, category)
+}

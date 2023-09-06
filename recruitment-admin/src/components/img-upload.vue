@@ -37,6 +37,11 @@ import Cloud from 'leancloud-storage'
   const fileList = ref([]);
   const loading = ref<boolean>(false);
   const imageUrl = ref<string>('');
+  interface EmitsType{
+    (e:'update:modelValue', arg:string):void
+  }
+
+  const emits = defineEmits<EmitsType>()
 
 
   const handleUpload = (info: any) => {
@@ -46,7 +51,9 @@ import Cloud from 'leancloud-storage'
         const file = new Cloud.File('recruit.png', { base64 })
         let res:any = await file.save()
         console.log(res);
-        imageUrl.value = res.attributes.url
+        let {url} = res.attributes
+        imageUrl.value = res.url
+        emits('update:modelValue', url) //把数据提交给表单
       }) 
   }
 //   const handleChange = (info: UploadChangeParam) => {

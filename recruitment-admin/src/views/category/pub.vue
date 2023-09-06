@@ -17,7 +17,7 @@
       </a-form-item>
       <a-form-item label="分类图标" v-bind="validateInfos.icon">
         <!-- 全局引入图片上传组件，在main.ts里面 -->
-        <img-upload />
+        <img-upload v-model="modelRef.icon" />
       </a-form-item>
       <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
         <a-button type="primary" @click.prevent="onSubmit">Create</a-button>
@@ -41,7 +41,7 @@ import { ref } from 'vue';
   const modelRef:CategoryType = reactive({
     name: '',
     parentId: '',
-    icon: 'img.png',
+    icon: '',
   });
   const rulesRef = reactive({
     name: [
@@ -69,6 +69,8 @@ import { ref } from 'vue';
   const onSubmit = () => {
     validate()
       .then(() => {
+        // console.log(modelRef);
+        
         categoryPost(modelRef)
       })
       .catch(err => {

@@ -11,7 +11,7 @@
 
         <template v-if="column.key === 'action'">
             <a-space>
-                <a-button type="primary" size="small">编辑</a-button>
+                <a-button type="primary" size="small" @click="handleEdit">编辑</a-button>
                 <a-button type="primary" danger size="small">删除</a-button>
             </a-space> 
         </template>
@@ -23,6 +23,7 @@
 import { CategoryType } from '@/types/pro';
 import { categoryToTree } from '@/utils/tools';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
   const columns = [
     {
       title: '分类名称',
@@ -49,6 +50,12 @@ import { ref } from 'vue';
         data.value =  categoryToTree(res.data.results)
            
   })
+
+  //编辑
+  const router = useRouter()
+  const handleEdit = () => {
+    router.push("/category/edit")
+  }
   </script>
   
   

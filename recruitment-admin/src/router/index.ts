@@ -38,6 +38,15 @@ export const routes = [
                             label: "发布分类",
                         },
                     },
+
+                    {
+                        path: '/category/edit',
+                        component:() => import('@/views/category/edit.vue') ,//懒加载
+                        meta: {
+                            label: "编辑分类",
+                            hidden:true //侧边栏隐藏
+                        },
+                    },
                 ]
             }
         

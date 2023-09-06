@@ -14,9 +14,12 @@
                             <span>{{ item.meta.label }}</span>
                         </span>
                     </template>
-                    <a-menu-item v-for="child in item.children" :key="child.path">
+                    <div v-for="child in item.children" v-show="!child.meta.hidden" >
+                        <a-menu-item :key="child.path">
                         {{ child.meta.label }}
                     </a-menu-item>
+                    </div>
+                    
                 </a-sub-menu>
             </template>
 
